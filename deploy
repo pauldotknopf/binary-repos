@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+github-release-sync --dir $DIR/packages --owner pauldotknopf --repo binary-repos --tag arch-linux-release --overwrite --prune

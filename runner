@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -e
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+pacman -Syu
+
+if [ -e packages ]; then
+  rm -r packages
+fi
+
+build_package() {
+  trizen -S --movepkg --movepkg-dir=packages --noconfirm --noedit $1
+}
+
+build_package ttf-ms-fonts
+build_package nerd-fonts-complete
+build_package antigen-git
+build_package gitflow-avh
+build_package google-chrome
+build_package visual-studio-code-bin
+build_package gpmdp
+build_package teamviewer-beta
+build_package keybase-bin
+build_package pulseaudio-ctl
+build_package j4-dmenu-desktop
+build_package polybar
+build_package alacritty-git
+build_package autorandr-git
+build_package feh
+
+repo-add packages/pauldotknopf.db.tar.gz packages/*.pkg.tar.xz

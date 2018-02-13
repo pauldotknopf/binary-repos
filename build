@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+docker run -it --rm -v $DIR:/mounted -w /mounted pauldotknopf/darch-arch-base /usr/bin/env bash -c "./runner"
