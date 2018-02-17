@@ -3,11 +3,17 @@ set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# We use an image that has our repository already using.
+# Let's go back to using original pacman.conf.
+rm /etc/pacman.conf
+cp /etc/pacman.conf.org /etc/pacman.conf
+
 pacman -Syu
 
 if [ -e packages ]; then
   rm -r packages
 fi
+mkdir packages
 
 build_package() {
   trizen -S --movepkg --movepkg-dir=packages --noconfirm --noedit $1
