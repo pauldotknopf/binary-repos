@@ -21,7 +21,6 @@ build_package google-chrome
 build_package visual-studio-code-bin
 build_package gpmdp
 build_package teamviewer-beta
-build_package keybase-bin
 build_package pulseaudio-ctl
 build_package j4-dmenu-desktop
 build_package polybar
