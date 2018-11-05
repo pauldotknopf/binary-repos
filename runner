@@ -6,17 +6,19 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # We use an image that has our repository already using.
 # Let's go back to using original pacman.conf.
 rm /etc/pacman.conf
-cp /etc/pacman.conf.org /etc/pacman.conf
+cp /etc/pacman.conf.orig /etc/pacman.conf
 
-pacman -Syu
+pacman -Syu --noconfirm
 
 if [ -e packages ]; then
   rm -r packages
 fi
 mkdir packages
 
+curl https://gist.githubusercontent.com/pauldotknopf/ff8e986225ab2f264acea1a5bb0c6c5a/raw/5c26a163f7815682793001312b0bd693bebb3d45/makepkg.patch | patch /usr/bin/makepkg
+
 build_package() {
-  trizen -S --movepkg --movepkg-dir=packages --noconfirm --noedit $1
+  trizen -S --skipinteg --movepkg --movepkg-dir=packages --noconfirm --noedit $1
 }
 
 build_package ttf-ms-fonts
